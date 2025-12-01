@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Mis items</h2>
+<a class="btn btn-sm btn-outline-secondary mb-3" href="{{ url_for('add_item') }}">Añadir nuevo</a>
+{% if items %}
+<div class="row">
+  {% for it in items %}
+  <div class="col-md-4 mb-3">
+    <div class="card">
+      {% if it.image %}
+      <img src="{{ it.image }}" class="card-img-top" alt="{{ it.name }}" style="max-height:250px;object-fit:cover;">
+      {% endif %}
+      <div class="card-body">
+        <h5 class="card-title">{{ it.name }}</h5>
+        {% if it.link %}
+        <a href="{{ it.link }}" target="_blank" class="btn btn-sm btn-primary">Ir al producto</a>
+        {% endif %}
+        <form class="d-inline" method="post" action="{{ url_for('delete_item', item_id=it.id) }}" onsubmit="return confirm('¿Eliminar este item?');">
+          <button class="btn btn-sm btn-danger">Eliminar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% else %}
+<p>No has añadido items todavía.</p>
+{% endif %}
+{% endblock %}
