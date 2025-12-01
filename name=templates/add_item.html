@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Añadir item</h2>
+<form method="post" enctype="multipart/form-data">
+  <div class="mb-3">
+    <label class="form-label">Nombre del item</label>
+    <input class="form-control" name="name" required>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Link del sitio (opcional)</label>
+    <input class="form-control" name="link" placeholder="https://...">
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Link de imagen (opcional)</label>
+    <input class="form-control" name="image_url" placeholder="https://...">
+    <div class="form-text">O sube una imagen abajo (si subes archivo, se usará el archivo).</div>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Subir imagen (opcional)</label>
+    <input class="form-control" type="file" name="image_file" accept="image/*">
+  </div>
+  <button class="btn btn-success">Añadir</button>
+</form>
+{% endblock %}
