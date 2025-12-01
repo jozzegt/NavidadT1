@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Lo que añade la otra persona</h2>
+{% if items %}
+<div class="row">
+  {% for it in items %}
+  <div class="col-md-4 mb-3">
+    <div class="card">
+      {% if it.image %}
+      <img src="{{ it.image }}" class="card-img-top" alt="{{ it.name }}" style="max-height:250px;object-fit:cover;">
+      {% endif %}
+      <div class="card-body">
+        <h5 class="card-title">{{ it.name }}</h5>
+        <p class="mb-1"><small>Por: {{ it.owner.username }}</small></p>
+        {% if it.link %}
+        <a href="{{ it.link }}" target="_blank" class="btn btn-sm btn-primary">Ir al producto</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% else %}
+<p>No hay items de otras personas todavía.</p>
+{% endif %}
+{% endblock %}
